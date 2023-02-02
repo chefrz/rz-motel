@@ -129,7 +129,6 @@ function Shower()
         end, function()
             shower = true
         end)
-        TriggerEvent("InteractSound_CL:PlayOnOne", "shower", "0.2")
         UseParticleFxAssetNextCall("core") 
         particles = StartParticleFxLoopedAtCoord("ent_sht_water", Config.ShowerCoords.x, Config.ShowerCoords.y, Config.ShowerCoords.z +1.2, 0.0, 0.0, 0.0, 1.0, false, false, false, false) UseParticleFxAssetNextCall("core") Citizen.Wait(3000) 
         particles2 = StartParticleFxLoopedAtCoord("ent_sht_water", Config.ShowerCoords.x, Config.ShowerCoords.y, Config.ShowerCoords.z +1.2, 0.0, 0.0, 0.0, 1.0, false, false, false, false) UseParticleFxAssetNextCall("core") Citizen.Wait(3000) 
