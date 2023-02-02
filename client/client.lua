@@ -162,7 +162,10 @@ function Sleep()
         TaskPlayAnim(PlayerPed, "switch@franklin@bed", "sleep_getup_rubeyes", 8.0, -8.0, -1, 0, 0.0, false, false, false)
         Citizen.Wait(9000)
         if Config.SleepHealth then
-            SetEntityHealth(PlayerPed, Config.Health)
+            local health = GetEntityHealth(PlayerPed) 
+            if health < 200 then
+                SetEntityHealth(PlayerPed, health + Config.Health)
+           end
         end
         TriggerServerEvent('hud:server:RelieveStress', math.random(5, 10))
         sleepcd = GetGameTimer() + Config.SleepCoolDown		
