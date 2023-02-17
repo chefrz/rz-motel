@@ -31,7 +31,7 @@
 - Download the script and put it in the `[qb]` directory.
 - Add the following code to your server.cfg/resouces.cfg
 ```
-ensure rz-burgershot
+ensure rz-motel
 ensure twostory
 ```
 
