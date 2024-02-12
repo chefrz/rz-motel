@@ -13,6 +13,7 @@ Config.Health = 25
 Config.SleepCoolDown = 30000
 Config.ShowerCoolDown = 30000
 Config.SleepTime = 20000
+Config.MaxPlayer = 64
 Config.motelCoord =  vector3(-267.2, -959.17, 31.23) 
 Config.motelDoor =  vector3(48.46, -974.02, -93.49)
 Config.motelHeading = 178.99
