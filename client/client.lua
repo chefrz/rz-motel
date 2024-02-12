@@ -36,22 +36,16 @@ Citizen.CreateThread(function()
         local playercoords = GetEntityCoords(player)
         local doordistance = GetDistanceBetweenCoords(playercoords, Config.EnterMotelRoom[currentmotel], true)
         if currentmotel ~= nil then
-            if inroom then
-                for _, PlayerPed in ipairs(GetActivePlayers()) do
-                    if PlayerPed ~= PlayerId() and NetworkIsPlayerActive(PlayerPed) then
-                        NetworkFadeInEntity(PlayerPedId(PlayerPed), true)
-                    end
-                end       
+            if inroom then      
             end
             if not inroom then
                 if doordistance <= 8.0 then
                     sleep = 5
-                    --QBCore.Functions.DrawText3D(Config.EnterMotelRoom[currentmotel].x, Config.EnterMotelRoom[currentmotel].y, Config.EnterMotelRoom[currentmotel].z, "selam")
                     DrawMarker(2, Config.EnterMotelRoom[currentmotel].x, Config.EnterMotelRoom[currentmotel].y, Config.EnterMotelRoom[currentmotel].z -0.65, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.3, 255, 00, 0, 200, false, true, false, false, false, false, false)
                 end
                 exports['qb-target']:AddCircleZone('enter', vector3(Config.EnterMotelRoom[currentmotel].x, Config.EnterMotelRoom[currentmotel].y, Config.EnterMotelRoom[currentmotel].z), 1.0,{
                     name = 'enter', debugPoly = false, useZ=true}, {
-                    options = {{label = Lang:t("motel.enterroom") ,icon = 'fa-solid fa-hand-holding', action = function() EnterMotelRoom() end}},
+                    options = {{label = Lang:t("motel.enterroom") ,icon = 'fa-solid fa-hand-holding', action = function() Enter() end}},
                     distance = 2.0
                 })
             end  
@@ -60,7 +54,18 @@ Citizen.CreateThread(function()
     end
 end)
 
-function EnterMotelRoom()
+
+function Enter()
+    print('girdi')
+    TriggerServerEvent('rz-motel:server:teleport', GetPlayerServerId(PlayerId()))
+end
+
+function Exit()
+    print('cıktı')
+    TriggerServerEvent('rz-motel:server:exitroom', GetPlayerServerId(PlayerId()))
+end
+
+RegisterNetEvent('rz-motel:client:enteroom', function()
     local PlayerPed = PlayerPedId()
     DoScreenFadeOut(500)
     Wait(600)
@@ -74,9 +79,9 @@ function EnterMotelRoom()
         Citizen.Wait(10)
 	until (IsControlJustPressed(0, 32) or IsControlJustPressed(0, 33) or IsControlJustPressed(0, 34) or IsControlJustPressed(0, 35))
     FreezeEntityPosition(PlayerPed, false)
-end
+end)
 
-function ExitMotelRoom()
+RegisterNetEvent('rz-motel:client:exitroom', function()
     local PlayerPed = PlayerPedId()
     DoScreenFadeOut(500)
     Wait(1500)
@@ -84,7 +89,7 @@ function ExitMotelRoom()
     Wait(500)
     inroom = false
     DoScreenFadeIn(1000)
-end
+end)
 
 function OpenMotelInventory()
     TriggerEvent("inventory:client:SetCurrentStash", "motel_"..PlayerData.citizenid, QBCore.Key)
@@ -183,7 +188,7 @@ exports['qb-target']:AddCircleZone('motelstash', vector3(Config.motelStash.x, Co
 
 exports['qb-target']:AddCircleZone('exit', vector3(Config.motelDoor.x, Config.motelDoor.y, Config.motelDoor.z), 1.0,{
     name = 'exit', debugPoly = false, useZ=true}, {
-    options = {{label = Lang:t("motel.exitroom") ,icon = 'fa-solid fa-hand-holding', action = function() ExitMotelRoom() end}},
+    options = {{label = Lang:t("motel.exitroom") ,icon = 'fa-solid fa-hand-holding', action = function() Exit() end}},
     distance = 2.0
 })
 
