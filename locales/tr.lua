@@ -12,6 +12,7 @@ local Translations = {
         ["cd"] = "Bu komutu 30 saniyede bir kullanabilirsin!",
         ["shower"] = "Güzel Kokuyorsun",
         ["sleep"] = "Rahatladın",
+        ["room_full"] = "Model odası dolu!",
     }
 }
 
