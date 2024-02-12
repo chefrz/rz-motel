@@ -6,6 +6,10 @@ client_scripts {
     'client/client.lua',
 }
 
+server_scripts {
+    'server/server.lua',
+}
+
 shared_scripts {
     '@qb-core/shared/locale.lua',
     'locales/en.lua',
