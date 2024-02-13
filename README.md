@@ -7,7 +7,7 @@
 ## Video Showcase
 - https://youtu.be/NE3P-48jLfY
 ## Discord
-- https://discord.gg/zertxMj7Y
+- https://discord.gg/3JHgCdUFtG
 
 ## Update
 - Fixed the issue of seeing other people in the room and updated the setup lines
